@@ -119,56 +119,128 @@ import ReactDOM from 'react-dom';
 //     document.getElementById('example')
 // )
 
-class  Clock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {date: new Date()}
+// class  Clock extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {date: new Date()}
+//     }
+//
+//     componentDidMount() {
+//         // this.timerID = setInterval(
+//         //     () => this.tick(), 1000
+//         // );
+//
+//         let _this = this;
+//         this.timerID = setInterval(function(){
+//             _this.tick();
+//         }, 1000);
+//     }
+//
+//
+//     componentWillUnmount() {
+//         clearInterval(this.timerID)
+//     }
+//
+//     tick() {
+//         this.setState({
+//             date: new Date()
+//         })
+//     }
+//
+//     render() {
+//         return (
+//             <div>
+//                 <h1>hello, world</h1>
+//                 <h2>现在是{this.state.date.toLocaleTimeString()}.</h2>
+//             </div>
+//         )
+//     }
+// }
+//
+//
+// function App() {
+//     return (
+//         <div>
+//             <Clock />
+//             <Clock />
+//             <Clock />
+//         </div>
+//     )
+// }
+//
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('example')
+// )
+
+
+// function ActionLink() {
+//     function handleClick(e) {
+//         e.preventDefault();
+//         console.log('链接被点击')
+//     }
+//
+//     return (
+//         <a href="#" onClick={handleClick}>点我</a>
+//     )
+// }
+//
+// ReactDOM.render(
+//     <ActionLink />,
+//     document.getElementById('example')
+// );
+
+// class Toggle extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {isToggleOn: true};
+//         console.log('this is:', this);
+//         // 这边绑定是必要的，这样 `this` 才能在回调函数中使用
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+//
+//     handleClick() {
+//         this.setState(prevState => ({
+//             isToggleOn: !prevState.isToggleOn
+//         }));
+//     }
+//
+//     render() {
+//         return (
+//             <button onClick={this.handleClick}>
+//                 {this.state.isToggleOn ? 'ON' : 'OFF'}
+//             </button>
+//         );
+//     }
+// }
+//
+// ReactDOM.render(
+//     <Toggle />, document.getElementById('example')
+// )
+
+
+class Popper extends React.Component{
+    constructor(){
+        super();
+        this.state = {name:'Hello world!'};
     }
 
-    componentDidMount() {
-        // this.timerID = setInterval(
-        //     () => this.tick(), 1000
-        // );
-
-        let _this = this;
-        this.timerID = setInterval(function(){
-            _this.tick();
-        }, 1000);
+    preventPop(name, e){    //事件对象e要放在最后
+        e.preventDefault();
+        alert(name);
     }
 
-
-    componentWillUnmount() {
-        clearInterval(this.timerID)
-    }
-
-    tick() {
-        this.setState({
-            date: new Date()
-        })
-    }
-
-    render() {
+    render(){
         return (
             <div>
-                <h1>hello, world</h1>
-                <h2>现在是{this.state.date.toLocaleTimeString()}.</h2>
+                <p>hello</p>
+                {/* 通过 bind() 方法传递参数。 */}
+                <a href="https://reactjs.org" onClick={this.preventPop.bind(this,this.state.name)}>Click</a>
             </div>
-        )
+        );
     }
-}
-
-
-function App() {
-    return (
-        <div>
-            <Clock />
-            <Clock />
-            <Clock />
-        </div>
-    )
 }
 
 ReactDOM.render(
-    <App />,
-    document.getElementById('example')
+    <Popper />, document.getElementById('example')
 )
